@@ -1,17 +1,23 @@
-const pgPromise = require("pg-promise")
-const config = {
-    user: 'postgres',
-    host: 'localhost',
-    database: 'e_comerce',
-    password: '12345',
-    port: 5432    
-}
+  const mysql      = require('mysql');
+  const connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'root',
+    database : 'e_comerce'
+  });  
+  connection.connect();
+  
 
-const pgp = pgPromise({})
-const db = pgp(config)
-//db.any("select*from publicidad").then(res => {console.log(res)})
-exports.db=db; 
+  
 
+ connection.query('SELECT * FROM publicidad', function (error, results, fields) {
+    if (error){
+        throw error;
+    }
+    results.forEach(result => {
+        console.log(result);
+    });
+});  
 
-
-
+//connection.end();
+exports.connection=connection; 

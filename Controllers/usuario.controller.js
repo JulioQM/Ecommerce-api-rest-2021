@@ -1,14 +1,21 @@
-const { db } = require("../cnn")
+const { connection } = require("../cnn")
 
 const getUsuarios = async (req, res) => {
-    const response = await db.any("select * from usuario order by idusuario desc;")
-    res.json(response)
+    connection.query('SELECT * FROM usuario', function (error, result) {
+        if (error)
+            throw error;        
+        res.send(result);        
+    });  
+    
 }
 //Listar Usuarios por ID
 const getUsuarioByID = async (req, res) => {
-    const id = parseInt(req.params.id)
-    const response = await db.any("select * from usuario WHERE idusuario=$1 ;", [id]);
-    res.json(response);
+    const id = parseInt(req.params.id)   
+    connection.query("select * from usuario WHERE idusuario=? ;", [id], function (error, result) {
+        if (error)
+            throw error;        
+        res.send(result);        
+    });
 }
 //Crear Usuarios
 const createUsuario = async (req, res) => {

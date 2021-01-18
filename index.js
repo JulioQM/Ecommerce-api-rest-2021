@@ -14,7 +14,7 @@ app.use(require("./Routes/index"))
 
 app.get('/',(req, res) => {res.send("Welcome to E_COMMERCE API-REST")})
 //ejecucion
-app.listen(3000)
-//app.listen(process.env.PORT || 5000)
+//app.listen(3000)
+app.listen(process.env.PORT || 5050)
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-console.log("Server running in http://localhost:3000")
+console.log("Server running in http://localhost:5050")

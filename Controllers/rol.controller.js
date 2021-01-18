@@ -26,13 +26,13 @@ const getRolesByID = async (req, res) => {
 }
 //Crear Roles
 const createRol = async (req, res) => {
-    const { idrol, rol } = req.body;
+    const { idrol, rol,estado } = req.body;
     try {
-        const response = await db.query("INSERT INTO Rol(idrol, rol) VALUES ($1, $2);", [idrol, rol]);
+        const response = await db.query("INSERT INTO Rol(idrol, rol,estado) VALUES ($1, $2,$3);", [idrol, rol,estado]);
         res.json({
             message: `Rol Creado con ID: ${idrol}`,
             body: {
-                Rol: { idrol, rol }
+                Rol: { idrol, rol,estado }
             }
         })
     } catch (error) {
@@ -62,13 +62,13 @@ const deleteRol = async (req, res) => {
 const updateRol = async (req, res) => {
     try {
         const idrol = parseInt(req.params.id)
-        const { rol } = req.body;
-        const response = await db.query("UPDATE Rol set rol=$1 where idrol=$2 ;", [rol, idrol]);
+        const { rol ,estado} = req.body;
+        const response = await db.query("UPDATE Rol set rol=$1 ,estado=$2 where idrol=$3 ;", [rol,estado, idrol]);
 
         res.json({
             message: `Rol Actualizado con ID: ${idrol}`,
             body: {
-                Rol: { idrol, rol }
+                Rol: { idrol, rol ,estado}
             }
         })
     } catch (error) {

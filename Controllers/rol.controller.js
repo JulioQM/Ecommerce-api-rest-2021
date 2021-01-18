@@ -1,48 +1,82 @@
 const { db } = require("../cnn");
 //Listar Roles
 const getRoles = async (req, res) => {
-    const response = await db.any("select * from Rol order by idrol desc;");
-    res.json(response);
+    try {
+        const response = await db.any("select * from Rol order by idrol desc;");
+        res.json(response);
+    } catch (error) {
+        res.json({
+            message: `Error detectado: ${error}`
+
+        })
+    }
 }
 //Listar Roles por ID
 const getRolesByID = async (req, res) => {
-    const id = parseInt(req.params.id)
-    const response = await db.any("select * from Rol WHERE idrol=$1 ;", [id]);
-    res.json(response);
+    try {
+        const idrol = parseInt(req.params.id)
+        const response = await db.any("select * from Rol WHERE idrol=$1 ;", [idrol]);
+        res.json(response);
+    } catch (error) {
+        res.json({
+            message: `Error detectado: ${error}`
+
+        })
+    }
 }
 //Crear Roles
 const createRol = async (req, res) => {
     const { idrol, rol } = req.body;
+    try {
+        const response = await db.query("INSERT INTO Rol(idrol, rol) VALUES ($1, $2);", [idrol, rol]);
+        res.json({
+            message: `Rol Creado con ID: ${idrol}`,
+            body: {
+                Rol: { idrol, rol }
+            }
+        })
+    } catch (error) {
+        res.json({
+            message: `Error detectado: ${error}`
 
-    const response = await db.query("INSERT INTO Rol(idrol, rol) VALUES ($1, $2);", [idrol, rol]);
-    res.json({
-        message: `Rol Creado con ID: ${id}`,
-        body: {
-            Rol: { idrol, rol }
-        }
-    })
+        })
+    }
 }
 //Eliminar Roles
 const deleteRol = async (req, res) => {
-    const id = parseInt(req.params.id)
-    const response = await db.query("DELETE FROM Rol where idrol=$1;", [id]) ;
+    try {
+        const idrol = parseInt(req.params.id)
+        const response = await db.query("DELETE FROM Rol where idrol=$1;", [idrol]);
 
-    res.json(
-        `Rol eliminado con ID: ${id}`)
+        res.json(
+            `Rol eliminado con ID: ${idrol}`)
+    } catch (error) {
+        res.json({
+            message: `Error detectado: ${error}`
+
+        })
+    }
 
 }
 //Actualizar  Roles
 const updateRol = async (req, res) => {
-    const id = parseInt(req.params.id)
-    const { rol } = req.body;
-    const response = await db.query("UPDATE Rol set rol=$1 where idrol=$2 ;", [rol,id]);
+    try {
+        const idrol = parseInt(req.params.id)
+        const { rol } = req.body;
+        const response = await db.query("UPDATE Rol set rol=$1 where idrol=$2 ;", [rol, idrol]);
 
-    res.json({
-        message: `Rol Actualizado con ID: ${id}`,
-        body: {
-            Rol: { id, rol }
-        }
-    })
+        res.json({
+            message: `Rol Actualizado con ID: ${idrol}`,
+            body: {
+                Rol: { idrol, rol }
+            }
+        })
+    } catch (error) {
+        res.json({
+            message: `Error detectado: ${error}`
+
+        })
+    }
 }
 
 

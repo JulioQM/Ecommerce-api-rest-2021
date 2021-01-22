@@ -81,6 +81,22 @@ const updateUsuario = async (req, res) => {
     }
 }
 
+//login usuario
+const loginUsuario = async (req, res) => {
+    try {
+        // const usuario = (req.params.usuario)
+        const {usuario,clave} = (req.params)
+        // const response = await db.any("select * from usuario WHERE usuario=$1;", [usuario]);
+        const response = await db.any("SELECT * FROM usuario WHERE usuario=$1 AND clave=$2 AND estatus=1;", [usuario,clave])
+        res.json(response);
+    } catch (error) {
+        res.json({
+            message: `Error detectado: ${error}`
+
+        })
+    }
+}
+
 
 
 module.exports = {
@@ -88,6 +104,7 @@ module.exports = {
     getUsuarioByID,
     createUsuario,
     deleteUsuario,
-    updateUsuario
+    updateUsuario,
+    loginUsuario
 
 }

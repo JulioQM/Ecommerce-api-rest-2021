@@ -3,13 +3,14 @@ const router = Router()
 
 
 //RUTAS PARA USUARIOS
-const {getUsuarios,getUsuarioByID,createUsuario,deleteUsuario,updateUsuario
+const {getUsuarios,getUsuarioByID,createUsuario,deleteUsuario,updateUsuario, loginUsuario
 } = require("../Controllers/usuario.controller")
 router.get("/Usuarios",getUsuarios)
 router.get("/Usuarios/:id",getUsuarioByID)
 router.post("/Usuarios",createUsuario)
 router.delete('/Usuarios/:id', deleteUsuario)
 router.put("/Usuarios/:id", updateUsuario)
+router.get("/Usuarios/:usuario-:clave",loginUsuario)
 //RUTAS PARA ROLES
 
 const {getRoles,getRolesByID,createRol,deleteRol,updateRol

@@ -10,7 +10,7 @@ router.get("/Usuarios/:id",getUsuarioByID)
 router.post("/Usuarios",createUsuario)
 router.delete('/Usuarios/:id', deleteUsuario)
 router.put("/Usuarios/:id", updateUsuario)
-router.get("/Usuarios/:usuario-:clave",loginUsuario)
+router.get("/Usuario/:usuario-:clave",loginUsuario)
 //RUTAS PARA ROLES
 
 const {getRoles,getRolesByID,createRol,deleteRol,updateRol

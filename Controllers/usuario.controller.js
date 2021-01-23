@@ -85,7 +85,8 @@ const updateUsuario = async (req, res) => {
 const loginUsuario = async (req, res) => {
     try {
         // const usuario = (req.params.usuario)
-        const {usuario,clave} = (req.params)
+        const {usuario} = (req.params)
+        const {clave} = (req.params)
         // const response = await db.any("select * from usuario WHERE usuario=$1;", [usuario]);
         const response = await db.any("SELECT * FROM usuario WHERE usuario=$1 AND clave=$2 AND estatus=1;", [usuario,clave])
         res.json(response);

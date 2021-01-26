@@ -28,7 +28,7 @@ const getRolesByID = async (req, res) => {
 const createRol = async (req, res) => {
     const { idrol, rol,estado } = req.body;
     try {
-        const response = await db.query("INSERT INTO Rol(idrol, rol,estado) VALUES ($1, $2,$3);", [idrol, rol,estado]);
+        const response = await db.query("INSERT INTO Rol(rol,estado) VALUES ($1, $2);", [ rol,estado]);
         res.json({
             message: `Rol Creado con ID: ${idrol}`,
             body: {

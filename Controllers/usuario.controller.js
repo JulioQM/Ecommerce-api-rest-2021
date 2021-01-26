@@ -30,7 +30,7 @@ const createUsuario = async (req, res) => {
     try {
         const { idusuario, idrol, nombre, correo, usuario, clave, estatus } = req.body;
 
-        const response = await db.query("INSERT INTO Usuario(idusuario, idrol, nombre ,correo, usuario, clave,estatus) VALUES ($1, $2, $3, $4 ,$5, $6 ,$7);", [idusuario, idrol, nombre, correo, usuario, clave, estatus]);
+        const response = await db.query("INSERT INTO Usuario(idrol, nombre ,correo, usuario, clave,estatus) VALUES ($1, $2, $3, $4 ,$5, $6 );", [ idrol, nombre, correo, usuario, clave, estatus]);
         res.json({
             message: `Usuario Creado con ID: ${idusuario}`,
             body: {

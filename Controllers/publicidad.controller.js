@@ -29,7 +29,7 @@ const createPublicidad = async (req, res) => {
     try {
         const { idpublicidad, titulo, descripcion, estado, imagen } = req.body;
 
-        const response = await db.query("INSERT INTO Publicidad( idpublicidad, titulo,descripcion,estado,imagen ) VALUES ($1, $2,$3,$4,$5);", [idpublicidad, titulo, descripcion, estado, imagen]);
+        const response = await db.query("INSERT INTO Publicidad(titulo,descripcion,estado,imagen ) VALUES ($1, $2,$3,$4);", [titulo, descripcion, estado, imagen]);
         res.json({
             message: `Publicidad Creada con ID: ${idpublicidad}`,
             body: {

@@ -29,4 +29,43 @@ router.post("/Publicidades", createPublicidad)
 router.delete('/Publicidades/:id', deletePublicidad)
 router.put("/Publicidades/:id", updatePublicidad)
 
+//RUTAS PARA PEDIDOS
+const {
+    getPedidos,
+    getPedidosByID,
+    getPedidosByUsuario,
+    createPedido,
+    deletePedido,
+    updatePedido,
+    getUltimoPedido
+} = require("../Controllers/pedidos.controller")
+router.get("/Pedidos", getPedidos)
+router.get("/Pedidos/byUltimoPedido", getUltimoPedido)
+router.get("/Pedidos/:id", getPedidosByID)
+router.get("/Pedidos/byuser/:id", getPedidosByUsuario)
+router.post("/Pedidos", createPedido)
+router.delete('/Pedidos/:id', deletePedido)
+router.put("/Pedidos/:id", updatePedido)
+
+//RUTAS PARA DETALLE PEDIDOS
+
+const {
+    getDetallePedidos,
+    getDEtallePedidosByPedido,
+    getDEtallePedidosByID,
+    createDetallePedido,
+    deleteDetallePedidoByPedido,
+    deleteDetallePedido,
+    updatePedidoDetalle,
+
+
+} = require("../Controllers/detallepedido.controller")
+router.get("/DetallePedidos", getDetallePedidos)
+router.get("/DetallePedidos/bypedido/:idpedido", getDEtallePedidosByPedido)
+router.get("/DetallePedidos/:id", getDEtallePedidosByID)
+router.post("/DetallePedidos", createDetallePedido)
+router.delete('/DetallePedidos/:id', deleteDetallePedido)
+router.delete('/DetallePedidos/bypedido/:id', deleteDetallePedidoByPedido)
+router.put("/DetallePedidos/:id", updatePedidoDetalle)
+
 module.exports=router

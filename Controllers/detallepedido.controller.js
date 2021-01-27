@@ -4,7 +4,7 @@ const { db } = require("../cnn");
 
 const getDetallePedidos = async(req, res) => {
         try {
-            const response = await db.any("select * from detalle_pedido order by  idDetalle desc;");
+            const response = await db.any("select d.iddetalle, d.idpedido, d.codproducto, d.cantidad, d.preciounitario,d.subtotal,pedido.fechapedido from detalle_pedido d inner join pedido ON pedido.idpedido=d.idpedido order by idpedido");
             res.json(response);
         } catch (error) {
             res.json({

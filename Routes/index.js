@@ -52,6 +52,7 @@ router.put("/Pedidos/:id", updatePedido)
 const {
     getDetallePedidos,
     getDEtallePedidosByPedido,
+    getDEtallePedidosByProduct,
     getDEtallePedidosByID,
     createDetallePedido,
     deleteDetallePedidoByPedido,
@@ -62,6 +63,7 @@ const {
 } = require("../Controllers/detallepedido.controller")
 router.get("/DetallePedidos", getDetallePedidos)
 router.get("/DetallePedidos/bypedido/:idpedido", getDEtallePedidosByPedido)
+router.get("/DetallePedidos/byproducto/:codproducto", getDEtallePedidosByProduct)
 router.get("/DetallePedidos/:id", getDEtallePedidosByID)
 router.post("/DetallePedidos", createDetallePedido)
 router.delete('/DetallePedidos/:id', deleteDetallePedido)

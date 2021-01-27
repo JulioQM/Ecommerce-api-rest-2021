@@ -30,7 +30,7 @@ const getDEtallePedidosByPedido = async(req, res) => {
     const getDEtallePedidosByProduct = async(req, res) => {
         try {
             const codproducto = req.params.codproducto;
-            const response = await db.any("select * from detalle_pedido  WHERE codproducto=$1 ;", [codproducto]);
+            const response = await db.any("select d.iddetalle, d.idpedido, d.codproducto, d.cantidad, d.preciounitario,d.subtotal,pedido.fechapedido from detalle_pedido d inner join pedido ON pedido.idpedido=d.idpedido WHERE codproducto=$1", [codproducto]);
             res.json(response);
         } catch (error) {
             res.json({

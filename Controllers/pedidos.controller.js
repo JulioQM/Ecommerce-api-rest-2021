@@ -105,6 +105,24 @@ const updatePedido = async(req, res) => {
         })
     }
 }
+//PEDIDO CABECERA
+const getPedidoCabecera = async (req, res) => {
+    try {
+        const {idpedido} = (req.params)
+        const {idusuario} = (req.params)
+        const response = await db.any(`SELECT p.idpedido, p.preciototal, to_char(p.fechapedido,'DD/MM/YYYY') as fecha, 
+                            to_char(p.fechapedido,'HH12:MI:SS') as hora, p.idusuario, p.estado, u.nombre 
+                            FROM pedido p INNER JOIN usuario u ON p.idusuario = u.idusuario 
+                            WHERE p.idpedido = $1 AND p.idusuario = $2 AND p.estado != 0;`, [idpedido,idusuario])
+        res.json(response);
+    } catch (error) {
+        res.json({
+            message: `Error detectado: ${error}`
+ 
+        })
+    }
+}
+
 
 
 
@@ -115,5 +133,6 @@ module.exports = {
     createPedido,
     deletePedido,
     updatePedido,
-    getUltimoPedido
+    getUltimoPedido,
+    getPedidoCabecera
 }

@@ -37,7 +37,8 @@ const {
     createPedido,
     deletePedido,
     updatePedido,
-    getUltimoPedido
+    getUltimoPedido,
+    getPedidoCabecera
 } = require("../Controllers/pedidos.controller")
 router.get("/Pedidos", getPedidos)
 router.get("/Pedidos/byUltimoPedido", getUltimoPedido)
@@ -46,6 +47,9 @@ router.get("/Pedidos/byuser/:id", getPedidosByUsuario)
 router.post("/Pedidos", createPedido)
 router.delete('/Pedidos/:id', deletePedido)
 router.put("/Pedidos/:id", updatePedido)
+router.get("/PedidoCabecera/:idpedido-:idusuario",getPedidoCabecera)
+
+
 
 //RUTAS PARA DETALLE PEDIDOS
 

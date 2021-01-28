@@ -28,7 +28,7 @@ const getDEtallePedidosByPedido = async (req, res) => {
         })
     }
 }
-const getPedidoDetalleById = async (req, res) => {​​​​​
+/*const getPedidoDetalleById = async (req, res) => {​​​​​
     try {​​​​​
         const idpedido = (req.params.id)
         const response = await db.any(`SELECT dp.codproducto, dp.cantidad, dp.preciounitario,
@@ -41,7 +41,7 @@ const getPedidoDetalleById = async (req, res) => {​​​​​
             message: `Error detectado: ${​​​​​error}​​​​​`
         }​​​​​)
     }​​​​​
-}​​​​​
+}​​​​​*/
 
 //Listar Detalle Pedidos por COD de producto
 const getDEtallePedidosByProduct = async (req, res) => {
@@ -151,7 +151,8 @@ module.exports = {
     createDetallePedido,
     deleteDetallePedidoByPedido,
     deleteDetallePedido,
-    updatePedidoDetalle,
-    getPedidoDetalleById
+    updatePedidoDetalle
+    //,
+    //getPedidoDetalleById
 
 }

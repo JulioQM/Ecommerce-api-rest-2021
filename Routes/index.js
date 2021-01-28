@@ -61,8 +61,8 @@ const {
     createDetallePedido,
     deleteDetallePedidoByPedido,
     deleteDetallePedido,
-    updatePedidoDetalle,
-    getPedidoDetalleById
+    updatePedidoDetalle
+    //,    getPedidoDetalleById
 
 
 } = require("../Controllers/detallepedido.controller")
@@ -74,6 +74,6 @@ router.post("/DetallePedidos", createDetallePedido)
 router.delete('/DetallePedidos/:id', deleteDetallePedido)
 router.delete('/DetallePedidos/bypedido/:id', deleteDetallePedidoByPedido)
 router.put("/DetallePedidos/:id", updatePedidoDetalle)
-router.get("/PedidoDetalle/:id",getPedidoDetalleById)
+//router.get("/PedidoDetalle/:id",getPedidoDetalleById)
 
 module.exports=router

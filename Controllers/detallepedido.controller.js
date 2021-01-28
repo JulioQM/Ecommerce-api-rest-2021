@@ -17,10 +17,11 @@ const getDetallePedidos = async (req, res) => {
 const getDEtallePedidosByPedido = async (req, res) => {
     try {
         const idpedido = (req.params.id)
-        const response = await db.any(`SELECT dp.codproducto, dp.cantidad, dp.preciounitario,
-        (dp.cantidad * dp.preciounitario) as subtotalUnit
-        FROM pedido p INNER JOIN detalle_pedido dp ON p.idpedido= dp.idpedido
-        WHERE p.idpedido = $1;`, [idpedido]);
+        const response = await db.any(`
+        SELECT dp.codproducto, dp.cantidad, dp.preciounitario,
+                (dp.cantidad * dp.preciounitario) as subtotalUnit
+                FROM pedido p INNER JOIN detalle_pedido dp ON p.idpedido= dp.idpedido
+                WHERE p.idpedido = $1`, [idpedido]);
         res.json(response);
     } catch (error) {
         res.json({
